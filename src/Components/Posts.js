@@ -6,12 +6,18 @@ import PostCard from "./PostCard";
 const Posts = () => {
   const [posts, setPosts] = useState(null);
   const [query, setQuery] = useState("");
+  const [searchText, setSearchText] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPage, setTotalPages] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
   const handlePagination = (e) => {
     setCurrentPage(e.selected);
+  };
+
+  const handleSearch = () => {
+    setCurrentPage(0);
+    setQuery(searchText);
   };
 
   const fetchPosts = async (query, page) => {
@@ -40,7 +46,7 @@ const Posts = () => {
   }, [query, currentPage]);
 
   return (
-    <div className="container">
+    <div className="container p-3">
       {isLoading && (
         <svg className="spinner" viewBox="0 0 50 50">
           <circle
@@ -53,6 +59,22 @@ const Posts = () => {
           ></circle>
         </svg>
       )}
+
+      <div className="d-flex p-3">
+        <input
+          className="form-control"
+          placeholder="Search"
+          type="text"
+          onChange={(e) => {
+            setSearchText(e.target.value);
+          }}
+          name=""
+          id=""
+        />
+        <button onClick={handleSearch} className="btn btn-primary mx-2">
+          Search
+        </button>
+      </div>
 
       {posts &&
         posts.map((post, index, array) => (
