@@ -1,18 +1,24 @@
 import React, { useState, useEffect } from "react";
+import ReactPaginate from "react-paginate";
 import { search_post } from "../service/service";
-import PostCard from "./PostCard"
-
+import PostCard from "./PostCard";
 
 const Posts = () => {
   const [posts, setPosts] = useState(null);
   const [query, setQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
+  const [totalPage, setTotalPages] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
+  const handlePagination = (e) => {
+    setCurrentPage(e.selected);
+  };
+
   const fetchPosts = async (query, page) => {
+    setIsLoading(true);
     try {
       const response = await search_post({ query: query, page: page });
-      console.log(response)
+      console.log(response);
       return response.data;
     } catch (error) {
       console.log(error);
@@ -23,14 +29,19 @@ const Posts = () => {
   };
 
   useEffect(() => {
-    fetchPosts(query, currentPage).then(({hits,nbPages}) => {
-      setPosts(hits)
-    })
-  }, []);
+    fetchPosts(query, currentPage)
+      .then(({ hits, nbPages }) => {
+        setPosts(hits);
+        setTotalPages(nbPages);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [query, currentPage]);
 
   return (
     <div className="container">
-      {isLoading ? (
+      {isLoading && (
         <svg className="spinner" viewBox="0 0 50 50">
           <circle
             className="path"
@@ -41,9 +52,35 @@ const Posts = () => {
             strokeWidth="5"
           ></circle>
         </svg>
-      ) : 
-        posts && posts.map((post, index, array) => <PostCard post={post} key={post?.objectID}/>)
-}
+      )}
+
+      {posts &&
+        posts.map((post, index, array) => (
+          <PostCard post={post} key={post?.objectID} />
+        ))}
+
+      <div className="d-flex justify-content-center">
+        {" "}
+        <ReactPaginate
+          nextLabel="Next"
+          previousLabel="Prev"
+          breakLabel="..."
+          forcePage={currentPage}
+          pageCount={totalPage}
+          renderOnZeroPageCount={null}
+          onPageChange={handlePagination}
+          className="pagination"
+          activeClassName="page-item active"
+          pageClassName="page-item"
+          pageLinkClassName="page-link"
+          previousClassName="page-item"
+          previousLinkClassName="page-link"
+          nextClassName="page-item"
+          nextLinkClassName="page-link"
+          breakClassName="page-item"
+          breakLinkClassName="page-link"
+        />
+      </div>
     </div>
   );
 };
