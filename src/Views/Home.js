@@ -1,9 +1,9 @@
 import React from 'react'
-import News from '../Components/News'
+import Posts from '../Components/Posts'
 
 const Home = () => {
   return (
-     <News/>
+     <Posts/>
   )
 }
 

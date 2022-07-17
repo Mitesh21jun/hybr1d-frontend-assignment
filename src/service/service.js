@@ -2,9 +2,12 @@ import axios from "axios";
 
 let base_url = "http://hn.algolia.com/api/v1";
 
-const search_post = async ({ query }) => {
+const search_post = async ({ query, page }) => {
   let response = axios.get(`${base_url}/search`, {
-    params: { query: query },
+    params: {
+      query: query,
+      page: page,
+    },
   });
   return response;
 };
