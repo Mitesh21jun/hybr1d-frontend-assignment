@@ -60,7 +60,7 @@ const Posts = () => {
         </svg>
       )}
 
-      <div className="d-flex p-3">
+      <div className="d-flex p-1">
         <input
           className="form-control"
           placeholder="Search"

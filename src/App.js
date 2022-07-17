@@ -6,10 +6,14 @@ import Home from "./Views/Home"
 
 function App() {
   return (
-    
+    <div className="container">
+      <nav className="navbar navbar-light bg-light">
+  <a className="navbar-brand  mx-2" href="/">Hacker News</a>
+</nav>
         <Routes>
           <Route path={"/"} exact element={<Home/>} />
         </Routes>
+    </div>
   );
 }
 
