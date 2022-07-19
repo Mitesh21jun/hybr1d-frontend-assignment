@@ -8,7 +8,7 @@ const PostCard = ({ post }) => {
   if (!post) return null;
 
   return (
-    <div
+    <div style={{cursor:'pointer'}}
       onClick={() => {
               navigate(`/article/${post.objectID}`,{state:{id:post.objectID}});
             //   <Link to={`/article/${post.objectID}`} />
@@ -23,11 +23,11 @@ const PostCard = ({ post }) => {
         <p className="text-muted">- {post?.author}</p>
         <div className="d-flex">
           <p className="card-text m-1">
-            <i className="fa-solid fa-star"></i>
+            <i className="fa-solid fa-star text-warning"></i>
             {post?.points ? post?.points : 0}
           </p>
           <p className="card-text m-1">
-            <i className="fa-solid fa-comments"></i>
+            <i className="fa-solid fa-comments text-success"></i>
             {post?.num_comments ? post?.num_comments : 0}
           </p>
         </div>
