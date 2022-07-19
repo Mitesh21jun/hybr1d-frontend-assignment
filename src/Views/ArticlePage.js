@@ -29,7 +29,7 @@ try {
 
   useEffect(() => {
     getPostById(id).then((data) => {
-      console.log(data)
+      // console.log(data)
       setArticle(data)
     })
   }, []);

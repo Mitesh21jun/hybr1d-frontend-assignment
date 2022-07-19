@@ -24,7 +24,7 @@ const Posts = () => {
     setIsLoading(true);
     try {
       const response = await search_post({ query: query, page: page });
-      console.log(response);
+      // console.log(response);
       return response.data;
     } catch (error) {
       console.log(error);
