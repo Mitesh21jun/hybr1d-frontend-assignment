@@ -67,6 +67,7 @@ const Posts = () => {
           type="text"
           onChange={(e) => {
             setSearchText(e.target.value);
+           
           }}
           name=""
           id=""

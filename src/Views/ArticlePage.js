@@ -8,10 +8,23 @@ const ArticlePage = (props) => {
   const { id } = state;
 
   const [article, setArticle] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const getPostById = async (id) => {
-    const response = await get_post_by_id({ id: id });
-    return response.data;
+    setIsLoading(true);
+
+try {
+  const response = await get_post_by_id({ id: id });
+  return response.data;
+} catch (error) {
+  console.log(error)
+  alert("Something went wrong, Check the console for details");
+
+} finally {
+  setIsLoading(false);
+
+  
+}
   };
 
   useEffect(() => {
@@ -23,6 +36,19 @@ const ArticlePage = (props) => {
 
 
   return <div>
+       {isLoading && (
+        <svg className="spinner" viewBox="0 0 50 50">
+          <circle
+            className="path"
+            cx="25"
+            cy="25"
+            r="20"
+            fill="none"
+            strokeWidth="5"
+          ></circle>
+        </svg>
+    )}
+    
     {article&&<Article article={article}/>}
   </div>;
 };

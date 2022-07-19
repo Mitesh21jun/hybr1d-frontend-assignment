@@ -5,8 +5,8 @@ const Article = ({ article }) => {
   if (!Article) return null;
 
   return (
-    <div style={{ cursor: "pointer" }} className=" m-3">
-      <div className="card-body border">
+    <div className=" m-3">
+      <div className="card-body border rounded">
               {article.title && <h5 className="card-title">{article?.title}</h5>}
               
    

@@ -14,7 +14,7 @@ const PostCard = ({ post }) => {
             //   <Link to={`/article/${post.objectID}`} />
 
       }}
-      className="card m-3 border-dark"
+      className="card m-3 border-dark rounded-3"
     >
       <div className="card-body">
         <h5 className={`card-title ${!post?.title ? "text-muted" : ""}`}>
