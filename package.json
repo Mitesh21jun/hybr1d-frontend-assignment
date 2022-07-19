@@ -2,7 +2,7 @@
   "name": "hybr1d-frontend-assignment",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://mitesh21jun.github.io/",
+  "homepage": "https://mitesh21jun.github.io/hybr1d-frontend-assignment",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
